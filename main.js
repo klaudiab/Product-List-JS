@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var savedItems = localStorage.getItem("cartItems");
+  document.getElementsByClassName("cart_items")[0].innerHTML = savedItems;
+
   var modal = document.getElementById("cart_modal");
   var btn = document.getElementById("cart_button");
 
@@ -83,12 +86,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cartItem.innerHTML = cartItemsContent;
     cartItems.append(cartItem);
+
     cartItem
       .getElementsByClassName("remove")[0]
       .addEventListener("click", removeCartItem);
     cartItem
       .getElementsByClassName("quantity")[0]
       .addEventListener("change", quantityChanged);
+
+    localStorage.setItem("cartItems", cartItems.innerHTML);
   }
 
   function updateCartTotal() {
